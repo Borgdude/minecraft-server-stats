@@ -1,3 +1,4 @@
+require('dotenv').config();
 var Discordie = require('discordie');
 var http = require('http');
 var SSH = require('simple-ssh');
@@ -5,15 +6,15 @@ var EventLogger = require('node-windows').EventLogger;
 var log = new EventLogger('Minecraft Server Bot');
 
 var ssh = new SSH({
-    host: '50.24.168.201',
-    user: 'borgdude',
-    pass: 'jakedude0108'
+    host: process.env.IP,
+    user: process.env.USERNAME,
+    pass: process.env.PASSWORD
 });
 
 const Events = Discordie.Events;
 const client = new Discordie();
 
-const MCAPI_URL = "http://mcapi.ca/query/50.24.168.201/info";
+const MCAPI_URL = "http://mcapi.ca/query/" + process.env.IP + "/info";
 
 client.connect({
   token: "MzE5NTU2NTk0MzkwMDA3ODE4.DBCpzg.OwDEPyGb1AGpcHoptjAayGeVXcw"
